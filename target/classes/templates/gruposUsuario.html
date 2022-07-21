@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Ride</title>
+</head>
+<body>
+	<h1>Perfil do Usuário</h1>
+	<h3><a href="/usuarios">Lista de Usuários</a></h3>
+	
+	<div th:each="usuario : ${usuario}">
+		<div class="row">
+			<p>Id: <span th:text="${usuario.idusuario}"></span></p>
+			<p>Nome: <span th:text="${usuario.nome}"></span></p>
+			<p>Curso: <span th:text="${usuario.curso}"></span></p>
+			<p>Data de Nascimento: <span th:text="${usuario.datanascimento}"></span></p>
+			<p>Email: <span th:text="${usuario.email}"></span></p>
+			<p>Endereço: <span th:text="${usuario.endereco}"></span></p>
+			<p>Telefone: <span th:text="${usuario.telefone}"></span></p>
+			<p>Modelo Carro: <span th:text="${perfil.modelocarro}"></span></p>
+			<p>Nota Motorista: <span th:text="${perfil.notamotorista}"></span></p>
+			<p>Nota Passageiro: <span th:text="${perfil.notapassageiro}"></span></p>
+			<p>Placa Carro: <span th:text="${perfil.placacarro}"></span></p>
+			<p>Quantidade de grupos criados como Motorista: <span th:text="${perfil.qtdgruposMcriados}"></span></p>
+			<p>Quantidade de grupos criados como Passageiro: <span th:text="${perfil.qtdgruposPcriados}"></span></p>
+			<p>Tipo de Perfil: <span th:text="${perfil.tipoperfil}"></span></p>
+		</div>
+		<h1>Criar Grupo</h1>
+		<form method ="post">
+			Preço: <input type="number" value ="" name ="preco" min="0"/><br>
+			Quantidade de Participantes: <input type="number" value ="" name ="qtdparticipantes" min="0" max="4"/><br>
+			Local de Partida: <input type="text" value ="" name ="localpartida"/><br>
+			Local de Chegada: <input type="text" value ="" name ="localchegada"/><br>
+			Descrição: <input type="text" value ="" name ="descricao"/><br>
+			<button type="submit">Criar Grupo</button>
+		</form>
+	</div>
+	<h5>Grupos do Usuário: </h5>
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Descrição</th>
+				<th>Local de Partida</th>
+				<th>Local de Chegada</th>
+				<th>Data de Criação</th>
+				<th>Data de Finalização</th>
+				<th>Preço</th>
+				<th>Quantidade de Participantes</th>
+				<th>Tipo do Grupo</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="grupo : ${grupos}">
+				<td><span th:text="${grupo.idgrupo}"></span></td>
+				<td><span th:text="${grupo.descricao}"></span></td>
+				<td><span th:text="${grupo.localpartida}"></span></td>
+				<td><span th:text="${grupo.localchegada}"></span></td>
+				<td><span th:text="${grupo.datacriacao}"></span></td>
+				<td><span th:text="${grupo.datafinalizacao}"></span></td>
+				<td><span th:text="${grupo.preco}"></span></td>
+				<td><span th:text="${grupo.qtdparticipantes}"></span></td>
+				<td><span th:text="${grupo.tipogrupo}"></span></td>
+				<td><a th:href="${(#mvc.url('GC#deletarGrupo').arg(0, grupo.idgrupo)).build()}">Excluir</a></td>	
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

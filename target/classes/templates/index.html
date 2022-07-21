@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<title>Ride</title>
+</head>
+<body>
+	<h1>Lista de Usuários</h1>
+	<h3><a href="/registro">Registre-se</a></h3>
+	
+	<table>
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Nome</th>
+				<th>Curso</th>
+				<th>Data de Nascimento</th>
+				<th>Email</th>
+				<th>Endereço</th>
+				<th>Telefone</th>
+				<th>Excluir</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="usuario : ${usuarios}">
+				<td><span th:text="${usuario.idusuario}"></span></td>
+				<td><a th:href="${(#mvc.url('PC#perfilUsuario').arg(0, usuario.idusuario)).build()}"><span th:text="${usuario.nome}"></span></a></td>
+				<td><span th:text="${usuario.curso}"></span></td>
+				<td><span th:text="${usuario.datanascimento}"></span></td>
+				<td><span th:text="${usuario.email}"></span></td>
+				<td><span th:text="${usuario.endereco}"></span></td>
+				<td><span th:text="${usuario.telefone}"></span></td>	
+				<td><a th:href="${(#mvc.url('UC#deletarUsuario').arg(0, usuario.idusuario)).build()}">Excluir</a></td>		
+			</tr>
+		</tbody>
+	</table>
+
+</body>
+</html>
